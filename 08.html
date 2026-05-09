@@ -1,0 +1,35 @@
+<!-- Dynamic unordered list -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Dynamic unordered list</h2>
+    <input type="text" id="txt" placeholder="Enter  items">
+    <button onclick="createlist()">Create List</button>
+    <ul id="list"></div>
+
+    <script>
+        function createlist(){
+            let items=document.getElementById("txt").value.split(",");
+            let ul=document.getElementById("list");
+            ul.innerHTML="";
+            for(let i=0;i<items.length;i++){
+                let li=document.createElement("li");
+                li.innerHTML=items[i].trim();
+                li.addEventListener("mouseover",function(){
+                    li.style.backgorund="yellow";
+                })
+                li.addEventListener("mouseout",function(){
+                    li.style.backgorund="black";
+                })
+                ul.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>

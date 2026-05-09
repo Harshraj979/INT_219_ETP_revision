@@ -1,0 +1,45 @@
+<!-- build a profile that includes image name and description when u hover over the image it should display a random funcfact about space include a button below description whne hovered it should display ur fav prog language in 4 diff tags -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="card">
+        <img id="img" src="https://picsum.photos/200" alt="profile">
+        <h2>Harsh Raj</h2>
+        <p>Web Developer and Programming Enthusiast</p>
+        <div id="fact"></div>
+        <button id="btn">Show Languages</button>
+        <h1 id="h1"></h1>
+        <h2 id="h2"></h2>
+        <h3 id="h3"></h3>
+        <h4 id="h4"></h4>
+    </div>
+
+    <script>
+        let facts = [
+            "Space is completely silent.",
+            "One day on Venus is longer than a year.",
+            "Neutron stars are very dense.",
+            "The Sun is a star."
+        ];
+
+        document.getElementById("img").addEventListener("mouseover", function () {
+            let random = Math.floor(Math.random() * facts.length);
+            document.getElementById("fact").innerHTML = facts[random];
+        })
+        document.getElementById("btn").addEventListener("click", function () {
+            document.getElementById("h1").innerHTML = "C++";
+            document.getElementById("h2").innerHTML = "Java";
+            document.getElementById("h3").innerHTML = "Python";
+            document.getElementById("h4").innerHTML = "JavaScript";
+        })
+    </script>
+</body>
+
+</html>

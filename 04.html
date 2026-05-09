@@ -1,0 +1,40 @@
+<!-- create a dynamic faq section show list of questions and on clikc reveal the answer collapse the answer when other question is clicked display an alert when question is clicked -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic FAQ</title>
+</head>
+
+<body>
+    <h2>Dynamic FAQ section</h2>
+    <div id="faq"></div>
+
+    <div class="question">What is HTML?</div>
+    <div class="answer">HTML creates webpages.</div>
+
+    <div class="question">What is CSS?</div>
+    <div class="answer">CSS styles webpages.</div>
+
+    <div class="question">What is JavaScript?</div>
+    <div class="answer">JavaScript adds functionality.</div>
+    <script>
+        const q=document.getElementsByClassName("question");
+        const a=document.getElementsByClassName("answer");
+
+        for(let i=0;i<q.length;i++){
+            q[i].addEventListener("click",function(){
+                alert("Question clicked");
+
+                for(let j=0;j<a.length;j++){
+                    a[j].style.display="none";
+                }
+                a[i].style.display="block";
+            })
+        }
+    </script>
+</body>
+</html>

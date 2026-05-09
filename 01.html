@@ -1,0 +1,47 @@
+<!-- code to create a dynamic paragraph generator where it takes no of paragraph as input from user and generates paragraph dynamically with random text and display on the page. Add a feature to change the font size when clicked -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:aria, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Paragraph generator</h1>
+    <input type="number" id="paragraphCount" placeholder="Enter number of paragraphs"><br><br>
+    <button onclick="generateParagraph()">Generate Paragraphs</button>
+    <div id="paragraphContainer"></div>
+
+    <script>
+        function generateParagraph(){
+            const count=document.getElementById('paragraphCount').value;
+            const container=document.getElementById('paragraphContainer');
+            container.innerHTML='';
+            const sampleText=[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            ]
+            for(let i=0;i<count;i++){
+                const p=document.createElement('p');
+                p.textContent=sampleText[Math.floor(Math.random()*sampleText.length)];
+                p.onclick=function(){
+                    this.style.fontSize='20px';
+                }
+                container.appendChild(p);
+            }
+        }
+        
+    </script>
+</body>
+</html>
+            

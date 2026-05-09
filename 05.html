@@ -1,0 +1,44 @@
+<!-- Dynamic image gallery that takes number of input from user and  generate image gallery and add feature when clicked image gets enlarged-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width:100px;
+            height:100px;
+            margin:10px;
+            cursor:pointer;
+        }
+        .big{
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dynamic Image gallery</h2>
+    <input type="number" id="num" placeholder="Enter num of images"><br><br>
+    <button onclick="createGallery()">Create Gallery</button><br><br>
+    <div id="gallery"></div>
+
+    <script>
+        function createGallery(){
+            let n=document.getElementById("num").value;
+            let gallery=document.getElementById("gallery");
+
+            gallery.innerHTML="";
+            for(let i=1;i<=n;i++){
+                let img=document.createElement("img");
+                img.src="https://picsum.photos/200?random="+i;
+                img.addEventListener("click",function(){
+                    this.classList.toggle("big");
+                })
+                gallery.appendChild(img);
+            }
+        }
+    </script>
+</body>
+</html>

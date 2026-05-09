@@ -1,0 +1,30 @@
+<!-- create a real time character counter in text area where show the remaining characters allowedas the user types change the colour tp red when exceeded display an alert when exceeded -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character counter</title>
+</head>
+<body>
+    <h1>Characer counter</h1>
+    <textarea id="textarea" placeholder="Enter your text here..."></textarea><br><br>
+    <p id="charcount">40 characters remaining</p>
+    <script>
+        const textarea=document.getElementById('textarea');
+        const charcount=document.getElementById('charcount');
+        textarea.addEventListener('input',()=>{
+            const remaining=40-textarea.value.length;
+            charcount.textContent=`${remaining} characters remaining`;
+            if(remaining<0){
+                charcount.style.color='red';
+                alert('Character limit exceeded!');
+            }
+            else{
+                charcount.style.color='black';
+            }
+        })
+    </script>
+</body>
+</html>

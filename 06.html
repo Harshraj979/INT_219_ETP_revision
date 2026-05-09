@@ -1,0 +1,48 @@
+<!-- digital clock -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="clock"></div>
+    <div id="quote"></div><br>
+    <button onclick="showcity()">Show city</button>
+
+    <h1 id="h1"></h1>
+    <h2 id="h2"></h2>
+    <h3 id="h3"></h3>
+
+    <script>
+        function showTime() {
+            let d = new Date();
+            let time = d.toLocaleTimeString();
+            document.getElementById("clock").innerHTML = time;
+        }
+        setInterval(showTime, 1000);
+
+
+        let quotes = [
+            "Never give up",
+            "Keep learning",
+            "Believe in yourself",
+            "Work hard"
+        ]
+        document.getElementById("clock").addEventListener("mouseover", function () {
+            let random = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote").innerHTML = quotes[random];
+        })
+
+        function showcity() {
+            document.getElementById("h1").innerHTML = "kolkata";
+            document.getElementById("h2").innerHTML = "kolkata";
+            document.getElementById("h3").innerHTML = "kolkata";
+        }
+    </script>
+</body>
+
+</html>

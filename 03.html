@@ -1,0 +1,41 @@
+<!-- code to create a dynamic dropdown menu  which takes the list of inputs from user generates a select dropdown dynamically and display on page add a feature to display  the selected option in a separate div  when choosen-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Dynamic drop down generator</h2>
+    <input type="text" id="userid" placeholder="Enter options"><br><br>
+    <button onclick="createDropDown()">Create DropDown</button><br><br>
+
+    <div id="dropdowncontainer"></div>
+    <div id="output">Selected outputs will appear here...</div>
+
+    <script>
+        function createDropDown(){
+            const input=document.getElementById("userid").value;
+            const items=input.split(",");
+
+            const container=document.getElementById('dropdowncontainer');
+            container.innerHTML="";
+
+            const select=document.createElement("select");
+
+            items.forEach(item=>{
+                const option=document.createElement("option");
+                option.value=item.trim();
+                option.textContent=item.trim();
+                select.appendChild(option);
+            })
+            select.addEventListener("change",function(){
+                document.getElementById("output").innerHTML="Selected: "+this.value;
+            })
+            container.appendChild(select);
+        }
+    </script>
+</body>
+</html>
