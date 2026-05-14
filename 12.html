@@ -1,0 +1,35 @@
+<!-- create a webpage containing a paragraph describing a product and three buttons: -highlight text -convert text to uppercase -reset formatting use javascript to dynamically modify the paragraph style and content when the buttons are clicked. apply appropriate css properties such as background color, font weight and text transform to achieve the required effect. display an alert message indicating which formatting action was performed. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="para">This is some para</p>
+    <button onclick="highlightText()">Highlight Text</button>
+    <button onclick="uppercaseText()">Uppercase</button>
+    <button onclick="resetText()">Reset</button>
+
+    <script>
+        const para=document.getElementById("para");
+        function highlightText(){
+            para.style.backgroundColor = "yellow";
+            para.style.fontWeight = "bold";
+            alert("Text Highlighted");
+        }
+        function uppercaseText(){
+            para.style.textTransform = "uppercase";
+            alert("Text Converted to Uppercase");
+        }
+        function resetText() {
+            para.style.backgroundColor = "white";
+            para.style.fontWeight = "normal";
+            para.style.textTransform = "none";
+            alert("Formatting Reset");
+        }
+    </script>
+</body>
+</html>

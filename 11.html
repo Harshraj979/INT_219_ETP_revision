@@ -1,0 +1,57 @@
+<!-- 1. create a webpage that demonstrates dynamic DOM content updates and asynchoronous behaviour add a button labeled "Load Articles" when the button is clicked:
+- display a loading message
+-stimulate retrieving article data after a delay using a promise
+-display a list of articles titles and summaries on the webpage
+show an alert when the articles have been successfully loaded -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="loadbtn">Load Articles</button>
+    <p id="msg"></div>
+    <div id="articles"></div>
+
+    <script>
+        const btn=document.getElementById("loadbtn");
+        const msg=document.getElementById("msg");
+        const articleDiv=document.getElementById("articles");
+
+        function loadArticles(){
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    const articles=[
+                        {
+                            title:"abc",
+                            summary:"abcd"
+                        },
+                        {
+                            title:"def",
+                            summary:"abcdef"
+                        }
+                    ];
+                    resolve(articles);
+                },3000);
+            })
+        }
+        btn.onclick=async function(){
+            msg.innerHTML="Loading function...";
+            let data=await loadArticles();
+            articleDiv.innerHTML="";
+            data.forEach(article=>{
+                articleDiv.innerHTML+=`
+                    <h3>${article.title}</h3>
+                    <p>${article.summary}</p>
+
+                `
+            })
+            msg.innerHTML="Articles loaded";
+            alert("Articles loaded successfully");
+        }
+    </script>
+</body>
+</html>
