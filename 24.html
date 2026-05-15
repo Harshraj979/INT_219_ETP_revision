@@ -1,0 +1,39 @@
+<!-- create a weather  information app where clicking a button triggers an async function that fetches dummy data display the loading message while fetching  data and update UI after a delay using async/await handle potential errros -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Weather Information</h1>
+    <button onclick="getWeather()">Get weather</button>
+    <div id="output"></div>
+    <script>
+        async function getWeather(){
+            let output=document.getElementById("output");
+            output.innerHTML="Lading data..";
+            try{
+                await new Promise((resolve)=>{
+                    setTimeout(resolve,2000);
+                })
+                let data={
+                    city : "Delhi",
+                    temperature : "35°C",
+                    condition : "Sunny"
+                }
+                output.innerHTML = `
+                    <p>City : ${data.city}</p>
+                    <p>Temperature : ${data.temperature}</p>
+                    <p>Condition : ${data.condition}</p>
+                `;
+            }
+            catch(error){
+                output.innerHTML="Error fertching data";
+            }
+        }
+    </script>
+</body>
+</html>

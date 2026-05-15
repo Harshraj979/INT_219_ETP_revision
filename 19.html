@@ -1,0 +1,62 @@
+<!-- Create a simple event reistration system where users can enters event name and student name using form using javascript prevent page reload store data in array of objects and display the registered  events dynamically on webpage impelement  delete functionality using event delegation and simulate a registration delay using set timeout and displaying a success message -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" id="ename" placeholder="Enter your name">
+        <input type="text" id="sname" placeholder="Enter your name">
+        <button type="submit">Register</button>
+    </form>
+    <p id="message"></p>
+    <div id="events"></div>
+    <script>
+        const form=document.getElementById('form');
+        const ename=document.getElementById('ename');
+        const sname=document.getElementById('sname');
+        const events=document.getElementById('events');
+        const message=document.getElementById('message');
+
+        const data=[];
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            message.innerText="Registering..";
+
+            setTimeout(()=>{
+                const obj={
+                    event:ename.value,
+                    student:sname.value
+                }
+                data.push(obj);
+                showData();
+                message.innerText="Registration successful";
+                form.reset();
+            },3000);
+        })
+        function showData(){
+            events.innerHTML="";
+            data.forEach((item,index)=>{
+                events.innerHTML+=`
+                    <div>
+                        <h3>${item.event}</h3>
+                        <p>${item.student}</p>
+
+                        <button id="${index}">delete</button>
+                    </div>
+                    `
+            })
+        }
+        events.addEventListener("click",(e)=>{
+            if(e.target.tagName==="BUTTON"){
+                data.splice(e.target.id,1);
+                showData();
+            }
+        })
+
+    </script>
+</body>
+</html>

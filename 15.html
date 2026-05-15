@@ -1,0 +1,37 @@
+<!-- 5. webpage that demonstrates event propogation and event delegation 
+create a container with multiple buttons labeled Button 1, Button 2, Button 3, Button 4. instead of attaching
+individual event listner attach a single event listner to the container
+when the button is clicked display an alert showing which button was pressed. also display the button name on the webpage -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button id="btn1">Button 1</button>
+        <button id="btn2">Button 2</button>
+        <button id="btn3">Button 3</button>
+        <button id="btn4">Button 4</button>
+    </div>
+    <div id="result"></div>
+    <script>
+        const container=document.getElementById("container");
+        const result=document.getElementById('result');
+
+        document.body.addEventListener("click", () => {
+            console.log("Body Clicked");
+        });
+
+        container.addEventListener("click",(e)=>{
+            const target=e.target;
+            if(target.tagName==='BUTTON'){
+                alert(target.innerText+"clicked");
+            }
+            result.innerText="You clicked"+target.innerText;
+        })
+    </script>
+</body>
+</html>

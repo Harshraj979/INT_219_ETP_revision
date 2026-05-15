@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task Manager</title>
+</head>
+
+<body>
+
+    <h1>Task Manager</h1>
+
+    <input type="text" id="task" placeholder="Enter Task">
+
+    <select id="priority">
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
+
+    <input type="date" id="date">
+
+    <button onclick="addTask()">Add</button>
+
+    <br><br>
+
+    <select id="filter" onchange="showTask()">
+        <option>All</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
+
+    <div id="output"></div>
+
+    <script>
+        let tasks = [];
+        function addTask() {
+            let t = document.getElementById("task").value;
+            let p = document.getElementById("priority").value;
+            let d = document.getElementById("date").value;
+
+            tasks.push({
+                task: t,
+                priority: p,
+                date: d,
+                done: false
+            });
+            showTask();
+        }
+
+        function showTask() {
+            let text = "";
+            let f = document.getElementById("filter").value;
+            for (let i = 0; i < tasks.length; i++) {
+                if (f == "All" || tasks[i].priority == f) {
+                    text += `
+            <p>
+            ${tasks[i].task} -
+            ${tasks[i].priority} -
+            ${tasks[i].date} -
+            ${tasks[i].done ? "Completed" : "Pending"}
+
+            <button onclick="complete(${i})">
+            Complete
+            </button>
+            </p>
+            `;
+                }
+            }
+            document.getElementById("output").innerHTML = text;
+        }
+        function complete(i) {
+            tasks[i].done = true;
+            showTask();
+        }
+    </script>
+
+</body>
+
+</html>

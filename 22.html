@@ -1,0 +1,102 @@
+<!-- develop a dynamic form builder where selcting different options generates corresponding multiple input fielsa validate all the dynamically gnerated inputs before submission  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="course">Course</label>
+    <select id="course" name="course">
+        <option value="student">Student</option>
+        <option value="employee">Employee</option>
+    </select>
+
+    <br><br>
+    <form id="form">
+        <div id="fields"></div>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="message"></p>
+    <script>
+        const course = document.getElementById("course");
+        const fields = document.getElementById("fields");
+        const form = document.getElementById("form");
+        const message = document.getElementById("message");
+
+        course.addEventListener("change",()=>{
+            if(course.value=="student"){
+                fields.innerHTML = `
+                    <input type="text" id="name" placeholder="Enter Name">
+                    <span id="nameError"></span>
+                    <br><br>
+                    <input type="number" id="age" placeholder="Enter Age">
+                    <span id="ageError"></span>
+                    <br><br>
+                `;
+            }
+            else if(course.value=="employee"){
+                fields.innerHTML = `
+                    <input type="text" id="empName" placeholder="Enter Employee Name">
+                    <span id="empError"></span>
+                    <br><br>
+                    <input type="text" id="salary" placeholder="Enter Salary">
+                    <span id="salaryError"></span>
+                    <br><br>
+                `;
+            }
+            else{
+                fields.innerHTML="";
+            }
+        })
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            let valid = true;
+            message.innerText = "";
+            if(course.value == "student"){
+                const name = document.getElementById("name");
+                const age = document.getElementById("age");
+
+                const nameError = document.getElementById("nameError");
+                const ageError = document.getElementById("ageError");
+
+                nameError.innerText = "";
+                ageError.innerText = "";
+
+                if(name.value == ""){
+                    nameError.innerText = "Name Required";
+                    valid = false;
+                }
+                if(age.value <= 0){
+                    ageError.innerText = "Invalid Age";
+                    valid = false;
+                }
+            }
+            else if(course.value == "employee"){
+                const empName = document.getElementById("empName");
+                const salary = document.getElementById("salary");
+
+                const empError = document.getElementById("empError");
+                const salaryError = document.getElementById("salaryError");
+
+                empError.innerText = "";
+                salaryError.innerText = "";
+
+                if(empName.value == ""){
+                    empError.innerText = "Employee Name Required";
+                    valid = false;
+                }
+                if(salary.value == "" || salary.value <= 0){
+                    salaryError.innerText = "Invalid Salary";
+                    valid = false;
+                }
+            }
+            if(valid){
+                message.innerText = "Form Submitted Successfully";
+            }
+        });
+    </script>
+</body>
+</html>

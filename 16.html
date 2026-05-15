@@ -1,0 +1,48 @@
+<!-- 6. webpage that allows users to build a wishlist.
+display a list of products with add to wishlist buttons. when a project is added, update the whishlist dynamically and displa the total numbers of items added.
+use js arrays and objects to store the wishlist data. add another button labeled "show wishlist summary" that displays the names of all items currently stored in the wishlist.
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <h2>Products</h2>
+    <div id="products">
+        <p>
+            Laptop
+            <button onclick="addToWishlist('laptop')">Add To Wishlist</button>
+        </p>
+        <p>
+            Mobile
+            <button onclick="addToWishlist('Mobile')">Add To Wishlist</button>
+        </p>
+        <p>
+            SmartWatch
+            <button onclick="addToWishlist('smartWatch')">Add To Wishlist</button>
+        </p>
+    </div>
+    <h3 id="count">Total Products added=0</h3>
+    <button onclick="showsummary()">Show summary</button>
+    <ul id="list"></ul>
+    <script>
+        let wishlist=[];
+        function addToWishlist(element){
+            wishlist.push(element);
+            document.getElementById("count").innerText="Total Products added = "+wishlist.length;
+        }
+        function showsummary(){
+            wishlist.forEach((item)=>{
+                const list=document.getElementById("list");
+                const li=document.createElement("li");
+                li.innerText=item;
+                list.appendChild(li);
+            })
+        }
+    </script>
+ </body>
+ </html>
