@@ -14,14 +14,11 @@
     <script>
         async function getWeather(){
             let output=document.getElementById("output");
-            output.innerHTML="Lading data..";
-            try{
-                await new Promise((resolve)=>{
-                    setTimeout(resolve,2000);
-                })
+            output.innerHTML="Loading data..";
+            setTimeout(()=>{
                 let data={
                     city : "Delhi",
-                    temperature : "35°C",
+                    temperature : "35",
                     condition : "Sunny"
                 }
                 output.innerHTML = `
@@ -29,10 +26,7 @@
                     <p>Temperature : ${data.temperature}</p>
                     <p>Condition : ${data.condition}</p>
                 `;
-            }
-            catch(error){
-                output.innerHTML="Error fertching data";
-            }
+            },2000);
         }
     </script>
 </body>

@@ -11,25 +11,13 @@
             background-color: black;
             color:white;
         }
-        .light{
-            background-color: white;
-            color:dark;
-        }
     </style>
 </head>
 <body>
     <button onclick="toggleTheme()">Toggle</button>
     <script>
         function toggleTheme(){
-            const body=document.body;
-            if(body.classList.contains('light')){
-                body.classList.remove('light');
-                body.classList.add('dark');
-            }
-            else{
-                body.classList.remove('dark');
-                body.classList.add('light');
-            }
+            document.body.classList.toggle('dark');
         }
     </script>
 </body>

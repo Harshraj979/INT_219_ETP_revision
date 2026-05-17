@@ -28,14 +28,13 @@ function loadUserProfiles() {
 }
 const btn = document.getElementById('btn');
 const output = document.getElementById('output');
-btn?.addEventListener("click", () => {
+btn?.addEventListener("click", async () => {
     if (output) {
         output.innerText = "Loading profiles..";
-        loadUserProfiles().then((users) => {
-            output.innerText = "";
-            users.map((user) => {
-                output.innerHTML += user.name + " - " + user.email + "<br>";
-            });
+        const users = await loadUserProfiles();
+        output.innerHTML = "";
+        users.forEach((user) => {
+            output.innerHTML += `${user.name} - ${user.email}<br>`;
         });
     }
 });
